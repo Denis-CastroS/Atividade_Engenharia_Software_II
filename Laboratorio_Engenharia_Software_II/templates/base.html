@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- WCAG 2.2: Título descritivo da página -->
+    <title>{% block title %}Lista de Tarefas Acessível{% endblock %}</title>
+    <!-- WCAG 2.2: CSS para estilização e acessibilidade -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- WCAG 2.2: Link de pular conteúdo para navegação por teclado -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    
+    <header role="banner">
+        <h1>Lista de Tarefas Acessível</h1>
+    </header>
+    
+    <main id="main-content" role="main">
+        <!-- WCAG 2.2: Exibição de mensagens flash (feedback ao usuário) -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" role="alert" aria-live="polite">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer role="contentinfo">
+        <p>&copy; 2024 - Aplicação desenvolvida com conformidade WCAG 2.2, OWASP e LGPD</p>
+    </footer>
+</body>
+</html>
+

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rede SINE - Vagas de Emprego e Informações</title>
+
+  <!-- VLibras -->
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script> new window.VLibras.Widget('https://vlibras.gov.br/app'); </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+    }
+    header {
+      background: #005aa7;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    main {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #005aa7;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    th {
+      background: #ffeb3b;
+      text-align: center;
+    }
+    .audio-btn {
+      background: #005aa7;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .audio-btn:hover {
+      background: #00447e;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <h1>Rede SINE – Vagas de Emprego e Informações Gerais</h1>
+</header>
+
+<main>
+
+<section>
+  <h2>Sobre o Sistema</h2>
+  <p>
+    A Rede SINE é um serviço público e gratuito de apoio ao trabalhador,
+    que ajuda na organização e captação de vagas de emprego, entrevistas
+    e informações do mercado de trabalho.
+  </p>
+
+  <button class="audio-btn" onclick="lerIntroducao()">🔊 Ouvir Audiodescrição</button>
+</section>
+
+<section>
+  <h2>Vagas PCD</h2>
+
+  <table aria-label="Vagas exclusivas para pessoas com deficiência">
+    <tr>
+      <th>Gesseiro<br>Nº 8661361</th>
+      <th>Carpinteiro<br>Nº 8661153</th>
+    </tr>
+    <tr>
+      <td colspan="2">
+        Ensino fundamental completo. Vagas exclusivas para pessoa com deficiência
+        ou reabilitado do INSS. Obrigatório laudo médico atualizado.
+      </td>
+    </tr>
+  </table>
+
+  <button class="audio-btn" onclick="lerVagas()">🔊 Ouvir Audiodescrição das Vagas</button>
+</section>
+
+<section>
+  <h2>Postos de Atendimento</h2>
+  <ul>
+    <li><strong>Belém:</strong> Postos SINE e unidades USIPAZ.</li>
+    <li><strong>Ananindeua:</strong> Casa do Trabalhador e USIPAZ Icuí-Guajará.</li>
+    <li><strong>Marituba:</strong> Posto SINE e USIPAZ Nova União.</li>
+  </ul>
+
+  <button class="audio-btn" onclick="lerPostos()">🔊 Ouvir Audiodescrição dos Postos</button>
+</section>
+
+<button class="audio-btn" onclick="pararLeitura()">⏹️ Parar leitura</button>
+
+</main>
+
+<script>
+function falar(texto) {
+  speechSynthesis.cancel(); // evita sobreposição
+  const msg = new SpeechSynthesisUtterance(texto);
+  msg.lang = 'pt-BR';
+  msg.rate = 1;
+  msg.pitch = 1;
+  speechSynthesis.speak(msg);
+}
+
+function lerIntroducao() {
+  falar(`Página da Rede SINE, Sistema Nacional de Emprego.
+  Serviço público e gratuito de apoio ao trabalhador.
+  O sistema organiza e divulga vagas de emprego, entrevistas
+  e informações do mercado de trabalho.
+  Também oferece acesso ao seguro-desemprego
+  e à Carteira de Trabalho Digital.`);
+}
+
+function lerVagas() {
+  falar(`Seção de vagas exclusivas para pessoas com deficiência.
+  Há vagas para gesseiro e carpinteiro.
+  Todas exigem ensino fundamental completo
+  e apresentação de laudo médico atualizado
+  ou certificado de reabilitação do INSS.`);
+}
+
+function lerPostos() {
+  falar(`Lista de postos de atendimento da Rede SINE.
+  Existem unidades em Belém, Ananindeua e Marituba,
+  incluindo postos SINE e unidades USIPAZ.`);
+}
+
+function pararLeitura() {
+  speechSynthesis.cancel();
+}
+</script>
+
+</body>
+</html>

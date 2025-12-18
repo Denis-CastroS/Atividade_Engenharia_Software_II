@@ -1,0 +1,160 @@
+/* WCAG 2.2 AA: Garante Contraste de Cores adequado */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333; /* Contraste alto com background claro */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* WCAG: Link de pular conteúdo deve ser visível ao Foco (para navegação por teclado) */
+.skip-link {
+    position: absolute;
+    top: -40px; /* Esconde o link por padrão */
+    left: 0;
+    background: #007bff;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 0; /* Torna-se visível ao receber foco via TAB */
+    outline: 3px solid #ffcc00; /* Foco Visível e Contraste Alto (WCAG) */
+}
+
+/* WCAG: Foco visível para todos os elementos interativos (Operável) */
+button:focus, input[type="text"]:focus, input[type="checkbox"]:focus {
+    outline: 3px solid #0056b3;
+    outline-offset: 2px;
+}
+
+.tarefa-concluida {
+    text-decoration: line-through;
+    color: #777;
+}
+
+h1 {
+    color: #0056b3;
+}
+
+form {
+    margin: 20px 0;
+    padding: 20px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus {
+    border-color: #0056b3;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:focus {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: white;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tarefa-item {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.tarefa-item input[type="checkbox"] {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.tarefa-item label {
+    flex: 1;
+    margin: 0;
+    cursor: pointer;
+}
+
+.tarefa-acoes {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-alternar, .btn-deletar {
+    padding: 5px 15px;
+    font-size: 14px;
+}
+
+.btn-deletar {
+    background-color: #dc3545;
+}
+
+.btn-deletar:hover {
+    background-color: #c82333;
+}
+
+.alert {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+

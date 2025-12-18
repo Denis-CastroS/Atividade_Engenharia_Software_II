@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- WCAG 2.2: Formulário semântico com rótulos associados -->
+<section aria-labelledby="form-titulo">
+    <h2 id="form-titulo">Adicionar Nova Tarefa</h2>
+    <form action="{{ url_for('adicionar') }}" method="POST" role="form">
+        <!-- WCAG 2.2: Label associado ao input via 'for' e 'id' -->
+        <label for="titulo-tarefa">Nova Tarefa:</label>
+        <input 
+            type="text" 
+            id="titulo-tarefa" 
+            name="titulo" 
+            required 
+            aria-required="true" 
+            placeholder="Ex: Estudar WCAG"
+            aria-label="Campo para inserir o título da nova tarefa"
+        >
+        <button type="submit">Adicionar Tarefa</button>
+    </form>
+</section>
+
+<!-- WCAG 2.2: Lista semântica de tarefas -->
+<section aria-labelledby="lista-titulo">
+    <h2 id="lista-titulo">Tarefas</h2>
+    {% if tarefas %}
+        <ul role="list">
+            {% for tarefa in tarefas %}
+            <li>
+                <div class="tarefa-item">
+                    <!-- WCAG 2.2: Formulário para alternar conclusão com label associado -->
+                    <form action="{{ url_for('alternar', tarefa_id=tarefa.id) }}" method="POST" style="display: inline;">
+                        <input 
+                            type="checkbox" 
+                            id="tarefa-{{ tarefa.id }}" 
+                            {% if tarefa.concluida %}checked{% endif %}
+                            onchange="this.form.submit()"
+                            aria-label="Marcar tarefa '{{ tarefa.titulo }}' como concluída ou não concluída"
+                        >
+                        <label 
+                            for="tarefa-{{ tarefa.id }}" 
+                            class="{% if tarefa.concluida %}tarefa-concluida{% endif %}"
+                        >
+                            {{ tarefa.titulo }}
+                        </label>
+                    </form>
+                </div>
+                <div class="tarefa-acoes">
+                    <!-- WCAG 2.2: Botão com texto descritivo -->
+                    <form action="{{ url_for('deletar', tarefa_id=tarefa.id) }}" method="POST" style="display: inline;">
+                        <button 
+                            type="submit" 
+                            class="btn-deletar"
+                            aria-label="Deletar tarefa '{{ tarefa.titulo }}'"
+                        >
+                            Deletar
+                        </button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma tarefa cadastrada ainda.</p>
+    {% endif %}
+</section>
+{% endblock %}
+
